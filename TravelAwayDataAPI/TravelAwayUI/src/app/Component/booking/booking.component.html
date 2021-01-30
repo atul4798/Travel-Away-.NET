@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body {
+      font-family: Calibri, Helvetica, sans-serif;
+     
+      
+      
+    }
+
+    .container {
+      width:50%;
+      padding: 50px;
+      background-color: lightblue;
+      margin-left:23%;      
+    }
+
+    input[type=text], input[type=email], input[type=date],textarea {
+      width: 100%;
+      padding: 15px;
+      margin: 5px 0 22px 0;
+      display: inline-block;
+      border: none;
+      background: #f1f1f1;
+    }
+
+      input[type=text]:focus input[type=email]:focus input[type=date]:focus {
+        background-color: orange;
+        outline: none;
+      }
+
+    div {
+      padding: 10px 0;
+    }
+
+    hr {
+      border: 1px solid #f1f1f1;
+      margin-bottom: 25px;
+    }
+    h1 {
+
+      text-align:center;
+    }
+
+    .registerbtn {
+      background-color: #4CAF50;
+      color: white;
+      padding: 16px 20px;
+      margin: 8px 0;
+      border: none;
+      cursor: pointer;
+      width: 100%;
+      opacity: 0.9;
+    }
+
+      .registerbtn:hover {
+        opacity: 1;
+      }
+  </style>
+</head>
+<body>
+  <form #BookForm="ngForm" (ngSubmit)="booked(BookForm)" novalidate>
+    <div class="container">
+      <h1> TravelAway Bookings!!</h1>
+      <hr>
+      <label> Name* </label>
+      <input type="text" name="firstname" #firstname="ngModel" placeholder="Firstname" maxlength="15" pattern="[A-Za-z]{1,}" required ngModel />
+      <div *ngIf="firstname.errors && (firstname.dirty || firstname.touched)" style="text-align: left;color:red">
+        <div [hidden]="!firstname.errors.required">
+          <p>&nbsp;First Name is Mandatory</p>
+        </div>
+        <div [hidden]="!firstname.errors.pattern">
+          <p>&nbsp;First Name is Not Entered in proper format</p>
+        </div>
+      </div>
+
+      <label> Emailid* </label>
+      <input type="email" name="email" #emailid="ngModel" placeholder="Emailid" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required ngModel />
+      <div *ngIf="emailid.errors && (emailid.dirty || emailid.touched)" style="text-align: left;color:red">
+        <div [hidden]="!emailid.errors.required">
+          <p>&nbsp;Emailid is Mandatory</p>
+        </div>
+        <div [hidden]="!emailid.errors.pattern">
+          <p>&nbsp;Email is Not Entered in proper format</p>
+        </div>
+      </div>
+
+
+      <label> Contact Number* </label>
+      <input type="text" name="cno" #Contact="ngModel" placeholder="Contact Number" maxlength="10" pattern="[789][0-9]{9}" required ngModel />
+      <div *ngIf="Contact.errors && (Contact.dirty || Contact.touched)" style="text-align: left;color:red">
+        <div [hidden]="!Contact.errors.required">
+          <p>&nbsp;Contact Number is Mandatory</p>
+        </div>
+        <div [hidden]="!Contact.errors.pattern">
+          <p>&nbsp;Contact Number is Not Entered in proper format</p>
+        </div>
+      </div>
+
+
+      <label> Residential Address* </label>
+      <textarea name="address" #residential="ngModel" placeholder="Residential Address" required ngModel></textarea>
+      <div *ngIf="residential.errors && (residential.dirty || residential.touched)" style="text-align: left;color:red">
+        <div [hidden]="!residential.errors.required">
+          <p>&nbsp;Residential Address is Mandatory</p>
+        </div>
+        <div [hidden]="!residential.errors.pattern">
+          <p>&nbsp;Residential Address is Not Entered in proper format</p>
+        </div>
+      </div>
+
+      <label>Date of Travel* </label>
+      <input type="date" name="Travel" #DTravel="ngModel" required ngModel />
+      <div *ngIf="DTravel.errors && (DTravel.dirty || DTravel.touched)" style="text-align: left;color:red">
+        <div [hidden]="!DTravel.errors.required">
+          <p>&nbsp;Date of Travel is Mandatory</p>
+        </div>
+        <div [hidden]="!DTravel.errors.pattern">
+          <p>&nbsp;Date of Travel is Not Entered in proper format</p>
+        </div>
+      </div>
+
+      <label>Number of Adults* </label>
+      <input type="text" name="Adults" #NAdults="ngModel" placeholder="Number of Adults"  pattern="[1-9]{1,}" required ngModel />
+      <div *ngIf="NAdults.errors && (NAdults.dirty || NAdults.touched)" style="text-align: left;color:red">
+        <div [hidden]="!NAdults.errors.required">
+          <p>&nbsp;Adults Number is Mandatory</p>
+        </div>
+        <div [hidden]="!NAdults.errors.pattern">
+          <p>&nbsp;Adults Number is Not Entered in proper format</p>
+        </div>
+      </div>
+
+      <label>Number of Children* </label>
+      <input type="text" name="Children" #NChildren="ngModel" placeholder="Number of Children"  pattern="[0-9]{1,2}" required ngModel />
+      <div *ngIf="NChildren.errors && (NChildren.dirty || NChildren.touched)" style="text-align: left;color:red">
+        <div [hidden]="!NChildren.errors.required">
+          <p>&nbsp;Children Number is Mandatory</p>
+        </div>
+        <div [hidden]="!NChildren.errors.pattern">
+          <p>&nbsp;Children Number is Not Entered in proper format</p>
+        </div>
+      </div>
+
+
+      <button type="submit" class="registerbtn">Book</button>
+    </div>
+</form>
+
+ 
+</body>
+</html>
